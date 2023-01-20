@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <sort.h>
+#include "sort.h"
 
 /**
  * find_min - function that returns minimum index
@@ -9,22 +9,20 @@
  *
  * Return: min index
  */
-
-int find_min(int *a, int size, int index)
+int find_min(int *a, size_t size, size_t index)
 {
-    int min = a[index];
-    int i;
-    int idx = index;
-    
-    for (i = index + 1; i < size; i++)
-    {
-        if (a[i] < min)
-        {
-            min = a[i];
-            idx = i;
-        }
-    }
-    return (idx);
+	int min = a[index];
+	size_t i;
+
+	for (i = index + 1; i < size; i++)
+	{
+		if (a[i] < min)
+		{
+			min = a[i];
+			index = i;
+		}
+	}
+	return (index);
 }
 
 /**
@@ -35,20 +33,19 @@ int find_min(int *a, int size, int index)
 
 void selection_sort(int *array, size_t size)
 {
-    size_t i;
-    int swap;
-    int index;
-    
-    for (i = 0; i < size - 1; i++)
-    {
-       index = find_min(array, size, i);
-       
-       if (index != i) {
-           swap = array[i];
-           array[i]= array[index];
-           array[index] = swap;
-       }
-       print_array(array, size);
-    }
+	size_t i, swap, index;
+
+	for (i = 0; i < size - 1; i++)
+	{
+		index = find_min(array, size, i);
+
+		if (index != i)
+		{
+			swap = array[i];
+			array[i] = array[index];
+			array[index] = swap;
+		}
+		print_array(array, size);
+	}
 }
 
