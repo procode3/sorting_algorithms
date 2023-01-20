@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <sort.h>
 
 /**
  * find_min - function that returns minimum index
