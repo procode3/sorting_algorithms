@@ -1,51 +1,45 @@
-#include <stdio.h>
 #include "sort.h"
 
 /**
- * find_min - function that returns minimum index
- * @a: pointer to array
- * @size: size of array
- * @index: index to start from
- *
- * Return: min index
+ * swap_ints - Swap two integers in an array.
+ * @a: The first integer to swap.
+ * @b: The second integer to swap.
  */
-int find_min(int *a, size_t size, size_t index)
+void swap_ints(int *a, int *b)
 {
-	int min = a[index];
-	size_t i;
+	int tmp;
 
-	for (i = index + 1; i < size; i++)
-	{
-		if (a[i] < min)
-		{
-			min = a[i];
-			index = i;
-		}
-	}
-	return (index);
+	tmp = *a;
+	*a = *b;
+	*b = tmp;
 }
 
 /**
- * selection_sort - selection sort alogarithm
- * @array: array
- * @size: size of array
+ * selection_sort - Sort an array of integers in ascending order
+ *                  using the selection sort algorithm.
+ * @array: An array of integers.
+ * @size: The size of the array.
+ *
+ * Description: Prints the array after each swap.
  */
-
 void selection_sort(int *array, size_t size)
 {
-	size_t i, swap, index;
+	int *min;
+	size_t i, j;
 
-	for (i = 0; i < size - 1 && array && size; i++)
+	if (array == NULL || size < 2)
+		return;
+
+	for (i = 0; i < size - 1; i++)
 	{
-		index = find_min(array, size, i);
+		min = array + i;
+		for (j = i + 1; j < size; j++)
+			min = (array[j] < *min) ? (array + j) : min;
 
-		if (index != i)
+		if ((array + i) != min)
 		{
-			swap = array[i];
-			array[i] = array[index];
-			array[index] = swap;
+			swap_ints(array + i, min);
+			print_array(array, size);
 		}
-		print_array(array, size);
 	}
 }
-
