@@ -52,7 +52,6 @@ void quicknsort(int *array, int start, int end, int size)
 		quicknsort(array, idx + 1, end, size);
 
 	}
-	print_array(array, size);
 
 }
 
