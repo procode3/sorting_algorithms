@@ -41,24 +41,15 @@ int partition(int *array, int start, int end)
  * @end: stopping index
  */
 
-void quicknsort(int *array, int start, int end)
+void quicknsort(int *array, int start, int end, int size)
 {
 	int idx;
-	int arrsize;
-	int arrelem;
-	int size;
-
-	arrsize = sizeof(array);
-	arrelem = sizeof(array[0]);
-
-	size = arrsize / arrelem;
-
 
 	if (start < end)
 	{
 		idx = partition(array, start, end);
-		quicknsort(array, start, idx - 1);
-		quicknsort(array, idx + 1, end);
+		quicknsort(array, start, idx - 1, size);
+		quicknsort(array, idx + 1, end, size);
 
 	}
 	print_array(array, size);
@@ -77,6 +68,6 @@ void quick_sort(int *array, size_t size)
 		int start = 0;
 		int end = size - 1;
 
-		quicknsort(array, start, end);
+		quicknsort(array, start, end, size);
 	}
 }
